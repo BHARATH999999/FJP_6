@@ -14,3 +14,27 @@ arr2[2] = 10;
 
 console.log(arr);
 console.log(arr2);
+
+//spread operator with objects
+
+let obj = {
+    name : "Aman",
+    address : {
+        country : "USA",
+        state : {
+            stateName : "NYK",
+            pincode : 123456
+        }
+    }
+}
+
+let obj2 = {... obj};
+obj2.name ="Aman1";
+
+console.log(obj.name);
+console.log(obj2.name);
+
+obj2.address.country = "INDIA"; //Changes the country name of obj1 to INDIA -- Called as Shallow Copy
+
+console.log(obj);
+console.log(obj2);
