@@ -15,5 +15,7 @@ let obj = {
     }
 }
 
-obj.def(); //Returns a normal object with name,age anf function
+obj.def(); //Returns a normal object with name,age and function
 
+let ghi = obj.def; //making a copy of def function to ghi, now ghi is a function
+ghi(); //Now this acts as global object
