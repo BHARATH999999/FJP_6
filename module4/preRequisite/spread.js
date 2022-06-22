@@ -35,6 +35,17 @@ console.log(obj.name);
 console.log(obj2.name);
 
 obj2.address.country = "INDIA"; //Changes the country name of obj1 to INDIA -- Called as Shallow Copy
-
+/*
+    In Shallow Copy Objects inside have the same reference(address) as the previous one.
+    So, Change in inside objects change the both objects.
+*/
 console.log(obj);
 console.log(obj2);
+
+//deep copy
+let obj3 = JSON.parse(JSON.stringify(obj));
+
+obj2.address.country = "JAPAN"; 
+
+console.log(obj);
+console.log(obj3);
