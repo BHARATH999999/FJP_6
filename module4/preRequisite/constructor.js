@@ -1,3 +1,4 @@
+// constructor function
 function car(Name,Model,Color){
     console.log(this);
     this.name = Name;
