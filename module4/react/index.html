@@ -5,8 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    
+    <div id ="root">
+
+    </div>
 </body>
-</html>
+
+<script type ="text/babel">
+    let root = document.querySelector("#root");
+
+    // // Using Js
+    // let ele = document.createElement("h1");
+    // ele.innerHTML = "Hello Bharath from Js";
+    // root.appendChild(ele);
+
+    // //using React
+    // let ele1 = React.createElement("h1",{
+    //     children : ["Hello Bharath from React"]
+    // })
+    // ReactDOM.render(ele,root);
+
+    //Using JSX --> JS + Html
+    let root1 = document.querySelector("#root");
+    function Element(){
+        return(
+            <h1>Hello Coder from JSX</h1>
+        )
+    }
+
+    ReactDOM.render(<Element/>,root1);
+</script>
+</html>  
