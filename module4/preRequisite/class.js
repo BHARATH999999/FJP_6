@@ -23,3 +23,15 @@ class Teacher extends Person{
 
 let teacher = new Teacher("Adam",23,56);
 console.log(teacher);
+
+class Student extends Person{
+    constructor(name,age,cgpa){
+        super(name,age);
+        this.cgpa = cgpa;
+    }
+}
+
+// Here Student and Teacher also Inherits the welcome function in the Person
+let student = new Student("Bharath",21,7.6);
+console.log(student);
+student.welcome();
