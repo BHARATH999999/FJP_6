@@ -26,7 +26,7 @@ let obj = {
     // }
 
     test : function(){
-        this.def();
+        this.def(); //method invocation
     },
 
     def : function(){
@@ -34,11 +34,11 @@ let obj = {
     }
 }
 
-obj.test();
+obj.test(); //method invocation
 
 // obj.def(); //method invocation
 //Returns a normal object with name,age and function
   
-let ghi = obj.def; //making a copy of def function to ghi, now ghi is a function
-ghi(); //function invocation
-//Now this acts as global object
+// let ghi = obj.def; //making a copy of def function to ghi, now ghi is a function
+// ghi(); //function invocation
+// //Now this acts as global object
