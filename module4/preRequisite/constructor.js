@@ -1,4 +1,5 @@
 function car(Name,Model,Color){
+    console.log(this);
     this.name = Name;
     this.model = Model;
     this.color = Color;
