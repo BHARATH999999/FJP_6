@@ -31,18 +31,35 @@
 
     //Using JSX --> JS + Html
     let root1 = document.querySelector("#root");
-    function Element(){
+    function Element({name = "Bharath", age}){
         return(
-            <h1>Hello Bharath from JSX</h1>
+            //Only one element is allowed in JSX SO make an div tag and keep the multiple elements in it
+            // name and age are props
+            // {name} is like destructuring an object.
+            <div>
+                
+            <h1>Hello {name} Coder</h1>
+            <h2>{age}</h2>
+            
+
+            </div>
+
+        )
+    }
+
+    function Element2(){
+        return(
+            <h2>How are you..?</h2>
         )
     }
 
     function Parent(){
         return(
             <div>
-                <Element/>
-                <Element/>
-                <Element/>
+                <Element name = "Aman" age = "23"/>
+                <Element2 name = "Bhavesh"/>
+                <Element age = "29"/>
+                <Element2/>
             </div>
         )
     }
