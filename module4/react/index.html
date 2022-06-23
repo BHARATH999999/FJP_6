@@ -33,10 +33,20 @@
     let root1 = document.querySelector("#root");
     function Element(){
         return(
-            <h1>Hello Coder from JSX</h1>
+            <h1>Hello Bharath from JSX</h1>
         )
     }
 
-    ReactDOM.render(<Element/>,root1);
+    function Parent(){
+        return(
+            <div>
+                <Element/>
+                <Element/>
+                <Element/>
+            </div>
+        )
+    }
+    
+    ReactDOM.render(<Parent/>,root1);
 </script>
 </html>  
