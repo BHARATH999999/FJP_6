@@ -19,11 +19,31 @@
     class Counter extends React.Component{
         constructor(){
             super();
+            this.state = {
+                count:0,
+            }
+        }
+
+        increase = () =>{
+            this.setState({
+                count : this.state.count+1,
+            })
+        }
+
+        decrease = () =>{
+            this.setState({
+                count : this.state.count-1,
+                //here count++ or count-- is not allowed and since it is an object make a comma at the end not semi colon
+            })
         }
 
         render(){
             return(
-                <h1>Hello World using Class Component</h1>
+                <div>
+                <h1>{this.state.count}</h1>
+                <button onClick = {this.increase} >+</button>
+                <button onClick = {this.decrease}>-</button>
+                </div>
             )
         }
     }
