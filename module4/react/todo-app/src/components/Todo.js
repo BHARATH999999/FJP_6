@@ -4,7 +4,7 @@ class Todo extends Component{
     constructor(){
         super();
         this.state ={
-            tasks : [{task : "Learn Js",id : 1},{task : "Learn DOM", id : 2},{task:"Learn React",id : 3},{task : "Learn Node",id : 4}] ,
+            tasks : [] ,
             currrTask : ""
         }
     }
@@ -22,6 +22,15 @@ class Todo extends Component{
             currrTask :""
         })
     }
+
+    handleDelete = (id) => {
+        let narr= this.state.tasks.filter((taskObj) =>{
+            return taskObj.id != id;
+        })
+        this.setState({
+            tasks : [...narr]
+        })
+    }
     render(){
         return(
             <div>
@@ -34,7 +43,8 @@ class Todo extends Component{
                                 <p>
                                     {taskObj.task}
                                 </p>
-                                <button>
+                                <button onClick = {() => this.handleDelete(taskObj.id)
+                                }>
                                     Delete
                                 </button>
                             </li>
