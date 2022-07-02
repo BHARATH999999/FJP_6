@@ -4,7 +4,7 @@ class Todo extends Component{
     constructor(){
         super();
         this.state ={
-            tasks : ["Learn Js","Learn DOM","Learn React","Learn Node"],
+            tasks : [{task : "Learn Js",id : 1},{task : "Learn DOM", id : 2},{task:"Learn React",id : 3},{task : "Learn Node",id : 4}] ,
             currrTask : ""
         }
     }
@@ -18,7 +18,7 @@ class Todo extends Component{
     
     handleAddTask = () =>{
         this.setState({
-            tasks : [...this.state.tasks,this.state.currrTask],
+            tasks : [...this.state.tasks,{task : this.state.currrTask , id : this.state.tasks.length + 1}],
             currrTask :""
         })
     }
@@ -29,10 +29,10 @@ class Todo extends Component{
                 <button onClick={this.handleAddTask}> Add Task </button>
                 <ul>
                     {
-                        this.state.tasks.map((ele)=>(
-                            <li>
+                        this.state.tasks.map((taskObj)=>(
+                            <li key = {taskObj.id}>
                                 <p>
-                                    {ele}
+                                    {taskObj.task}
                                 </p>
                                 <button>
                                     Delete
