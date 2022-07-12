@@ -5,7 +5,7 @@ import {movies} from "../movieData";
 
 class Banner extends Component {
     render() {
-        let movie = movies.results[0];
+        let movie = movies.results[Math.floor(Math.random()*movies.results.length)];
         let backdrop_path = movie.backdrop_path; 
         return (<div className="card banner-card">
             <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} className="card-img-top banner-img" alt="..."/>
