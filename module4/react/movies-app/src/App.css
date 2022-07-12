@@ -86,3 +86,13 @@
   top : 1rem;
   left: 1rem;
 }
+
+.movies-button{
+  top : 15rem;
+  position: absolute;
+}
+
+.navigation-bar{
+  display: flex;
+  justify-content: center;
+}
