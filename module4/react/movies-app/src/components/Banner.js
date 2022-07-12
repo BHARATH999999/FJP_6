@@ -1,13 +1,16 @@
 import { Component } from "react";
+import {movies} from "../movieData";
 
 
 
 class Banner extends Component {
     render() {
+        let movie = movies.results[0];
+        let backdrop_path = movie.backdrop_path; 
         return (<div className="card banner-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6U_j8vXfmZ4WmOQQtHqi2n_qiEedg5aAN-w&usqp=CAU" className="card-img-top banner-img" alt="..."/>
-            <h5 className="card-title banner-title">Card title</h5>
-            <p className="card-text banner-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} className="card-img-top banner-img" alt="..."/>
+            <h5 className="card-title banner-title">{movie.title}</h5>
+            <p className="card-text banner-text">{movie.overview}</p>
         </div>)
     }
 }
