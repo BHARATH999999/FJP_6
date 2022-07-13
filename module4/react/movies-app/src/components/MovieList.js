@@ -33,8 +33,12 @@ class MovieList extends Component {
     }
 
     handlePrevious = () => {
+        if(this.state.pArr.length != 1){
+            this.setState({
+                pArr : [...this.state.pArr.slice(0,this.state.pArr.length - 1)],
+            })
+        }
         this.setState({
-            // pArr : [...this.state.pArr.slice(1,this.state.pArr.length - 1)],
             currPage : this.state.currPage - 1,
         },this.changeMovies)
     }
