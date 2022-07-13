@@ -9,18 +9,42 @@ class MovieList extends Component {
         this.state = {
             hover : "",
             pArr : [1],
-            moviesArr : [] 
+            moviesArr : [] ,
+            currPage : 1
         }
     }
 
     async componentDidMount(){
-        const res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=7d5b0d8847ec640c12adf53166649843');
+        // link format is https://api.themoviedb.org/3/movie/popular?api_key=7d5b0d8847ec640c12adf53166649843&language=en-US&page=1
+        const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=7d5b0d8847ec640c12adf53166649843&page=${this.state.currPage}`);
         console.log(res.data);
         this.setState({
             moviesArr : [...res.data.results]
         })
 
     }
+
+    changeMovies = async() => {
+        const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=7d5b0d8847ec640c12adf53166649843&page=${this.state.currPage}`);
+        console.log(res.data);
+        this.setState({
+            moviesArr : [...res.data.results]
+        })
+    }
+
+    handlePrevious = () => {
+        this.setState({
+            // pArr : [...this.state.pArr.slice(1,this.state.pArr.length - 1)],
+            currPage : this.state.currPage - 1,
+        },this.changeMovies)
+    }
+    handleNext = ()=> {
+        this.setState({
+            pArr : [...this.state.pArr,this.state.pArr.length + 1],
+            currPage : this.state.currPage + 1,
+        },this.changeMovies)
+    }
+    
     render() {
         return (
             <>  
@@ -43,11 +67,11 @@ class MovieList extends Component {
                 <div className="navigation-bar">
                     <nav aria-label="Page navigation example">
                         <ul className="pagination">
-                            <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+                            <li className="page-item"><a className="page-link" onClick={this.handlePrevious}>Previous</a></li>
                             {this.state.pArr.map((ele) => (
                                 <li className="page-item"><a className="page-link" href="#">{ele}</a></li>
                             ))}
-                            <li className="page-item"><a className="page-link" href="#">Next</a></li>
+                            <li className="page-item"><a className="page-link" onClick={this.handleNext} >Next</a></li>
                         </ul>
                     </nav>
                 </div>
