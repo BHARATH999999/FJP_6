@@ -45,6 +45,13 @@ class MovieList extends Component {
         },this.changeMovies)
     }
     
+    handlePageClick = (ele)=>{
+        if(ele != this.state.currPage){
+            this.setState({
+                currPage : ele,
+            },this.changeMovies)
+        }
+    }
     render() {
         return (
             <>  
@@ -69,7 +76,7 @@ class MovieList extends Component {
                         <ul className="pagination">
                             <li className="page-item"><a className="page-link" onClick={this.handlePrevious}>Previous</a></li>
                             {this.state.pArr.map((ele) => (
-                                <li className="page-item"><a className="page-link" href="#">{ele}</a></li>
+                                <li className="page-item"><a className="page-link" onClick={() => this.handlePageClick(ele)}>{ele}</a></li>
                             ))}
                             <li className="page-item"><a className="page-link" onClick={this.handleNext} >Next</a></li>
                         </ul>
