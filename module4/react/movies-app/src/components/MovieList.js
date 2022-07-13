@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { movies } from '../movieData';
+// import { movies } from '../movieData';
+import axios from 'axios';
 
 
 class MovieList extends Component {
@@ -7,18 +8,28 @@ class MovieList extends Component {
         super();
         this.state = {
             hover : "",
-            pArr : [1]
+            pArr : [1],
+            moviesArr : [] 
         }
     }
+
+    async componentDidMount(){
+        const res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=7d5b0d8847ec640c12adf53166649843');
+        console.log(res.data);
+        this.setState({
+            moviesArr : [...res.data.results]
+        })
+
+    }
     render() {
-        let moviesArr = movies.results
         return (
-            <>  <div>
+            <>  
+                <div>
                 <h3 className="text-center"> <strong>Trending</strong> </h3>
-            </div>
+                </div>
                 <div className="movies-list">
                     {
-                        moviesArr.map((movieEle) => (
+                        this.state.moviesArr.map((movieEle) => (
                             <div className="card movie-card" onMouseEnter={()=>this.setState({hover : movieEle.id})} onMouseLeave = {()=> this.setState({hover:""})}>
                                 <img src={`https://image.tmdb.org/t/p/original${movieEle.backdrop_path}`} style={{ height: '40vh', width: '20vw' }} className="card-img-top" alt="..." />
                                 <h5 className="card-title movie-title">{movieEle.title}</h5>
