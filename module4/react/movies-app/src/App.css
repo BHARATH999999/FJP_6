@@ -96,3 +96,17 @@
   display: flex;
   justify-content: center;
 }
+
+.Fav-Table{
+  padding-top: 3rem;
+}
+
+.genre-selector{
+  padding-top: 3rem;
+}
+
+.Fav_image{
+  width: 6.6rem;
+  /* height: 2.5rem; */
+  padding-right: 1rem;
+}
