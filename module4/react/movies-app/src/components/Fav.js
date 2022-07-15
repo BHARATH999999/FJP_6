@@ -8,6 +8,7 @@ class Fav extends Component {
             genres: [],
             currGenre: 'All genres',
             movies: [],
+            movies2 : [],
             currText : ""
         }
     }
@@ -25,6 +26,7 @@ class Fav extends Component {
 
         this.setState({
             movies: [...data],
+            movies2: [...data],
             genres: [...tempArr]
         })
     }
@@ -32,7 +34,7 @@ class Fav extends Component {
     handleChangeGenre = (genre) => {
         this.setState({
             currGenre: genre
-        }, this.filterMovies())
+        }, this.filterMovies)
     }
 
     filterMovies = () => {
@@ -40,13 +42,15 @@ class Fav extends Component {
         let data = JSON.parse(localStorage.getItem('movies-app') || '[]')
         if (this.state.currGenre == "All genres") {
             this.setState({
-                movies: [...data]
+                movies: [...data],
+                movies2: [...data],
             })
         }
         else {
             let filteredMovies = data.filter((movieObj) => genre_ids[movieObj.genre_ids[0]] == this.state.currGenre);
             this.setState({
-                movies: [...filteredMovies]
+                movies: [...filteredMovies],
+                movies2: [...filteredMovies],
             })
         }
     }
@@ -59,7 +63,7 @@ class Fav extends Component {
 
     searchMovies = () => {
         if(this.state.currText != ""){
-            let filteredArr = this.state.movies.filter((movieObj) => {
+            let filteredArr = this.state.movies2.filter((movieObj) => {
                 let title = movieObj.original_title.toLowerCase();
                 return title.includes(this.state.currText.toLowerCase());
             })
@@ -68,8 +72,11 @@ class Fav extends Component {
                 movies : [...filteredArr]
             })
         }
-        else if (this.state.currText == ""){
-            this.filterMovies()
+        else {
+            let data = JSON.parse(localStorage.getItem('movies-app') || '[]')
+            this.setState({
+                movies: [...data]
+            })
         }
     }
     render() {
