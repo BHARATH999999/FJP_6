@@ -124,6 +124,15 @@ class Fav extends Component {
             movies2: [...temp],
         })
     }
+    handleDelete = (movieEle) =>{
+        let temp = JSON.parse(localStorage.getItem('movies-app'))
+        temp = temp.filter((movie)=>movie.id!=movieEle.id)
+        localStorage.setItem("movies-app",JSON.stringify(temp));
+        this.setState({
+            movies: [...temp],
+            movies2: [...temp],
+        })
+    }
     render() {
         let genre_ids = { 28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction", 10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western" }
         return (
@@ -179,7 +188,7 @@ class Fav extends Component {
                                                 <td className = "text-center">{movieEle.popularity}</td>
                                                 <td className = "text-center">{movieEle.vote_average}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger">delete</button>
+                                                    <button type="button" class="btn btn-danger" onClick={()=>this.handleDelete(movieEle)}>delete</button>
 
                                                 </td>
                                             </tr>
