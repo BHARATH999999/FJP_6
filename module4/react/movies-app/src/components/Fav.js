@@ -1,26 +1,34 @@
 import { Component } from "react";
-import { movies } from '../movieData';
+// import { movies } from '../movieData';
 
 class Fav extends Component {
     constructor(){
         super();
         this.state = {
             genres : [],
-            currGenre : ["All Genres"],
+            currGenre : 'All Genres',
             movies : []
 
         }
     }
 
-    render() {
+    componentDidMount(){
         let genre_ids = { 28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction", 10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western" }
-        const moviesArr = movies.results;
+        let data = JSON.parse(localStorage.getItem('movies-app')|| '[]')
         let tempArr = ["All genres"];
-        moviesArr.map((movieObj) => {
+        data.map((movieObj) => {
             if (!tempArr.includes(genre_ids[movieObj.genre_ids[0]])) {
                 tempArr.push(genre_ids[movieObj.genre_ids[0]])
             }
         })
+
+        this.setState({
+            movies : [...data],
+            genres : [...tempArr]
+        })
+    }
+    render() {
+        let genre_ids = { 28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction", 10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western" }
         return (
             <div>
                 <div className="container">
@@ -28,7 +36,9 @@ class Fav extends Component {
                         <div className="col-3 ">
                             <ul className="list-group genre-selector">
                                 {
-                                    tempArr.map((genre) => (
+                                    this.state.genres.map((genre) => (
+                                        this.state.currGenre == genre ? (
+                                        <li className="list-group-item active">{genre}</li>):
                                         <li className="list-group-item">{genre}</li>
                                     ))
                                 }
@@ -53,7 +63,7 @@ class Fav extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        moviesArr.map((movieEle) => (
+                                        this.state.movies.map((movieEle) => (
                                             <tr>
                                                 <th scope="row">
                                                     <img className="Fav_image" src={`https://image.tmdb.org/t/p/original${movieEle.backdrop_path}`} />
