@@ -75,7 +75,7 @@ class Fav extends Component {
         else {
             let data = JSON.parse(localStorage.getItem('movies-app') || '[]')
             this.setState({
-                movies: [...data]
+                movies: [...this.state.movies2]
             })
         }
     }
