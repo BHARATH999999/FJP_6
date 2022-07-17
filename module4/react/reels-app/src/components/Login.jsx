@@ -1,8 +1,8 @@
 import { useState } from "react"
-
+import {auth} from "../firebase"
+import {signInWithEmailAndPassword} from "firebase/auth";
 
 function Login(){
-
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -14,20 +14,20 @@ function Login(){
         setPassword(e.target.value);
     }
 
-    const printDetails = function(){
-        alert(email + " " + password)
+    const printDetails = async function(){
+        let userCred =  signInWithEmailAndPassword(auth,email,password)
+        console.log(userCred)
+        // alert(email + " " + password)
     }
 
-    
-    return(
+    return (
         <>
-        <input type = "email" placeholder="email" onClick={trackEmail}>{email}</input>
-        <br></br>
-        <input type="password" placeholder="password" onClick={trackPassword}></input>
-        <br></br>
-        <button type="click" onClick={printDetails}>Login</button>
+            <input type="email" onChange={trackEmail}  placeholder="email" />
+            <br></br>
+            <input type="password" onChange={trackPassword} placeholder="password" />
+            <br></br>
+            <button type="click" onClick={printDetails}>Login</button>
         </>
     )
 }
-
 export default Login
