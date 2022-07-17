@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Feed from './components/Feed'
 import Login from './components/Login'
@@ -13,24 +13,20 @@ function App() {
       <Route path="/feed">
         <Feed></Feed>
       </Route>
+
       <Route path="/login">
         <Login></Login>
       </Route>
-      <Route path="/signup">
-        <SignUp>
 
-        </SignUp>
+      <Route path="/signup">
+        <SignUp> </SignUp>
       </Route>
 
       <Route path="/profile">
-        <Profile>
-
-        </Profile>
+        <Profile> </Profile>
       </Route>
       <Route>
-        <PageNotFound>
-
-        </PageNotFound>
+        <PageNotFound> </PageNotFound>
       </Route>
     </Switch>
   );
