@@ -4,11 +4,28 @@ import {useContext} from "react"
 import {AuthContext} from "../context/Authcontext"
 import {db} from "../firebase"
 import {doc,getDoc} from "firebase/firestore"
+import { async } from "@firebase/util"
 
 function Profile(){
     let cUser = useContext(AuthContext);
     let [loading,setLoading] = useState("")
 
+    useEffect(function(){
+        (async function(){
+            if(cUser){
+                //Read from database
+                const docRef = doc(db,"users",cUser.uid);
+                const docSnap = await getDoc(docRef);
+                console.log("Document Data : ",docSnap);
+                if(docSnap.exists()){
+                    console.log(docSnap.data());
+                }
+                else{
+                    console.log("No data");
+                }
+            }
+        })()
+    },[cUser])
     return (
             <>
                 {cUser == null?<div>Need to login</div>:    
