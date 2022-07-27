@@ -5,16 +5,20 @@ import Login from './components/Login'
 import Profile from './components/Profile'
 import PageNotFound from "./components/PageNotFound"
 import SignUp from './components/Signup'
-import { Route, Switch } from 'react-router-dom';
-import { AuthContextProvider } from './context/Authcontext'
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { AuthContext, AuthContextProvider } from './context/Authcontext'
+import { Component, useContext } from 'react';
 
 function App() {
   return (
     <AuthContextProvider>
       <Switch>
-        <Route path="/feed">
+        <PrivateRoute path ="/feed" comp = {Feed}>
+
+        </PrivateRoute>
+        {/* <Route path="/feed">
           <Feed></Feed>
-        </Route>
+        </Route> */}
 
         <Route path="/login">
           <Login></Login>
@@ -24,9 +28,12 @@ function App() {
           <SignUp> </SignUp>
         </Route>
 
-        <Route path="/profile">
+        <PrivateRoute path= "/profile" comp = {Profile} >
+
+        </PrivateRoute>
+        {/* <Route path="/profile">
           <Profile> </Profile>
-        </Route>
+        </Route> */}
         <Route>
           <PageNotFound> </PageNotFound>
         </Route>
@@ -35,4 +42,19 @@ function App() {
   );
 }
 
+function PrivateRoute(props){
+  let Component = props.comp;
+  let cUser = useContext(AuthContext);
+    return(
+      <Route
+        {...props}
+
+        render = {
+          (props) => {
+            return cUser != null ? <Component {...props}></Component> : <Redirect {...props} to = "/login"></Redirect>
+          }
+        }
+      ></Route>
+    )
+}
 export default App;
